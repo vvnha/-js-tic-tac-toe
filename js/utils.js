@@ -57,8 +57,7 @@ export function checkGameStatus(cellValues) {
 
     const matchValue =
       cellValues[winIndexList[0]] === cellValues[winIndexList[1]] &&
-      cellValues[winIndexList[0]] === cellValues[winIndexList[2]] &&
-      cellValues[winIndexList[1]] === cellValues[winIndexList[2]];
+      cellValues[winIndexList[0]] === cellValues[winIndexList[2]];
 
     if (
       matchValue &&
