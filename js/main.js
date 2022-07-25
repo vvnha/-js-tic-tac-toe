@@ -105,7 +105,7 @@ function initReplayButton() {
   replayButtonElement.addEventListener('click', () => {
     currentTurn = TURN.CROSS;
     updateGameStatus(GAME_STATUS.PLAYING);
-    cellValues = new Array(9).fill('');
+    cellValues = cellValues.map(() => '');
     isGameEnded = false;
     cellElementList.forEach((cell) => {
       cell.classList.remove(TURN.CROSS, TURN.CIRCLE, 'win');
