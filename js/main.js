@@ -29,6 +29,7 @@ function updateGameStatus(status) {
 
 function showReplayButton() {
   const replayButtonElement = getReplayButtonElement();
+
   if (isGameEnded && replayButtonElement) {
     replayButtonElement.style.display = 'inline-block';
   }
