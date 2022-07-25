@@ -62,12 +62,7 @@ export function checkGameStatus(cellValues) {
       cellValues[winIndexList[0]] === cellValues[winIndexList[1]] &&
       cellValues[winIndexList[0]] === cellValues[winIndexList[2]];
 
-    if (
-      matchValue &&
-      cellValues[winIndexList[0]] !== '' &&
-      cellValues[winIndexList[1]] !== '' &&
-      cellValues[winIndexList[2]] !== ''
-    ) {
+    if (matchValue && cellValues[winIndexList[0]] !== '') {
       return {
         status:
           cellValues[winIndexList[0]] === 'X'
