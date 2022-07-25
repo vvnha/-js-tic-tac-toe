@@ -36,7 +36,7 @@ function showReplayButton() {
 }
 
 function highlightWinCells(winIndexList) {
-  if (!Array.isArray(winIndexList) && winIndexList.length > 0) return;
+  if (!Array.isArray(winIndexList) && winIndexList.length !== 3) return;
 
   for (let i = 0; i < winIndexList.length; i++) {
     const cellElement = getCellElementAtIdx(winIndexList[i]);
