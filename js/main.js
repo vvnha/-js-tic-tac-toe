@@ -19,6 +19,26 @@ function toggleTurn() {
   currentTurn = currentTurn === TURN.CIRCLE ? TURN.CROSS : TURN.CIRCLE;
 }
 
+function getCellValues(currentTurn, index) {
+  const cellElementList = getCellElementList();
+  const cellElementAtIndex = getCellElementAtIdx(index);
+
+  if (!cellElementAtIndex) return;
+
+  cellElementAtIndex.dataset.value = currentTurn === 'cross' ? 'X' : 'O';
+
+  const cellElementValueList = [];
+
+  for (let i = 0; i < cellElementList.length; i++) {
+    const cell = cellElementList[i];
+    const cellValue = (cell.dataset.value ??= '');
+
+    cellElementValueList.push(cellValue);
+  }
+
+  return cellElementValueList;
+}
+
 function handleCellClick(cell, index) {
   // set selected cell
   const isSelected =
@@ -26,7 +46,8 @@ function handleCellClick(cell, index) {
 
   if (isSelected) return;
 
-  const result = checkGameStatus(currentTurn, index);
+  const cellValues = getCellValues(currentTurn, index);
+  const result = checkGameStatus(cellValues);
   const statusElement = getGameStatusElement();
 
   if (statusElement) {
@@ -43,8 +64,7 @@ function handleCellClick(cell, index) {
   }
 
   cell.classList.add(currentTurn);
-  cell.dataset.value = currentTurn;
-  // change curren turn
+  // change current turn
   toggleTurn();
 }
 

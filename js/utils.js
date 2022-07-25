@@ -40,7 +40,7 @@ import { getCellElementAtIdx, getCellElementList } from './selectors.js';
 
 // Input: an array of 9 items
 // Output: an object as mentioned above
-export function checkGameStatus(cellValues, index) {
+export function checkGameStatus(cellValues) {
   // Write your code here ...
   // Please feel free to add more helper function if you want.
   // It's not required to write everything just in this function.
@@ -51,40 +51,31 @@ export function checkGameStatus(cellValues, index) {
     [0, 4, 8],
     [2, 4, 6],
   ];
+  console.log(cellValues);
 
   for (let i = 0; i < winCases.length; i++) {
     const winIndexList = winCases[i];
-    if (winIndexList.includes(index)) {
-      const matchFirstValue =
-        getCellElementAtIdx(winIndexList[0]).dataset.value === cellValues ||
-        winIndexList[0] === index;
-      const matchSecondValue =
-        getCellElementAtIdx(winIndexList[1]).dataset.value === cellValues ||
-        winIndexList[1] === index;
-      const matchThirdValue =
-        getCellElementAtIdx(winIndexList[2]).dataset.value === cellValues ||
-        winIndexList[2] === index;
 
-      if (matchFirstValue && matchSecondValue && matchThirdValue)
-        return {
-          status:
-            cellValues === TURN.CROSS ? GAME_STATUS.X_WIN : GAME_STATUS.O_WIN,
-          winPositions: winIndexList,
-        };
+    const matchValue =
+      cellValues[winIndexList[0]] === cellValues[winIndexList[1]] &&
+      cellValues[winIndexList[0]] === cellValues[winIndexList[2]] &&
+      cellValues[winIndexList[1]] === cellValues[winIndexList[2]];
+
+    if (
+      matchValue &&
+      cellValues[winIndexList[0]] !== '' &&
+      cellValues[winIndexList[1]] !== '' &&
+      cellValues[winIndexList[2]] !== ''
+    ) {
+      return {
+        status:
+          cellValues[winIndexList[0]] === 'X'
+            ? GAME_STATUS.X_WIN
+            : GAME_STATUS.O_WIN,
+        winPositions: winIndexList,
+      };
     }
   }
-
-  const cellElementList = getCellElementList();
-  let count = 0;
-  for (let i = 0; i < cellElementList.length; i++) {
-    if (cellElementList[i].dataset.value !== undefined) count++;
-  }
-
-  if (count === 8)
-    return {
-      status: GAME_STATUS.ENDED,
-      winPositions: [],
-    };
 
   return {
     status: GAME_STATUS.PLAYING,
