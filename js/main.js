@@ -107,6 +107,14 @@ function initReplayButton() {
     updateGameStatus(GAME_STATUS.PLAYING);
     cellValues = cellValues.map(() => '');
     isGameEnded = false;
+
+    const currentTurnElement = getCurrentTurnElement();
+
+    if (currentTurnElement) {
+      currentTurnElement.classList.remove(TURN.CIRCLE, TURN.CROSS);
+      currentTurnElement.classList.add(TURN.CROSS);
+    }
+
     cellElementList.forEach((cell) => {
       cell.classList.remove(TURN.CROSS, TURN.CIRCLE, 'win');
     });
