@@ -46,6 +46,8 @@ export function checkGameStatus(cellValues) {
   // It's not required to write everything just in this function.
   const winCases = [
     [0, 3, 6],
+    [0, 1, 2],
+    [6, 7, 8],
     [2, 5, 8],
     [1, 4, 7],
     [0, 4, 8],
