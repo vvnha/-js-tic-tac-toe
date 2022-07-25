@@ -78,6 +78,17 @@ export function checkGameStatus(cellValues) {
     }
   }
 
+  let isEnded = true;
+  for (let i = 0; i < cellValues.length; i++) {
+    if (cellValues[i] === '') isEnded = false;
+  }
+
+  if (isEnded)
+    return {
+      status: GAME_STATUS.ENDED,
+      winPositions: [],
+    };
+
   return {
     status: GAME_STATUS.PLAYING,
     winPositions: [],
