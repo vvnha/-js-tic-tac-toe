@@ -103,6 +103,8 @@ function initReplayButton() {
   if (!cellElementList || !cellElementList) return;
 
   replayButtonElement.addEventListener('click', () => {
+    currentTurn = TURN.CROSS;
+    updateGameStatus(GAME_STATUS.PLAYING);
     cellValues = new Array(9).fill('');
     isGameEnded = false;
     cellElementList.forEach((cell) => {
