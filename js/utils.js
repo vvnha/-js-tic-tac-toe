@@ -51,7 +51,6 @@ export function checkGameStatus(cellValues) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  console.log(cellValues);
 
   for (let i = 0; i < winCases.length; i++) {
     const winIndexList = winCases[i];
