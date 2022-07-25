@@ -31,7 +31,8 @@ function showReplayButton() {
   const replayButtonElement = getReplayButtonElement();
 
   if (isGameEnded && replayButtonElement) {
-    replayButtonElement.style.display = 'inline-block';
+    // replayButtonElement.style.display = 'inline-block';
+    replayButtonElement.classList.add('show');
   }
 }
 
@@ -40,7 +41,7 @@ function highlightWinCells(winIndexList) {
 
   for (let i = 0; i < winIndexList.length; i++) {
     const cellElement = getCellElementAtIdx(winIndexList[i]);
-    cellElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+    cellElement.classList.add('win');
   }
 }
 
@@ -105,10 +106,10 @@ function initReplayButton() {
     cellValues = new Array(9).fill('');
     isGameEnded = false;
     cellElementList.forEach((cell) => {
-      cell.classList.remove(TURN.CROSS, TURN.CIRCLE);
+      cell.classList.remove(TURN.CROSS, TURN.CIRCLE, 'win');
     });
 
-    replayButtonElement.style.display = 'none';
+    replayButtonElement.classList.remove('show');
   });
 }
 
