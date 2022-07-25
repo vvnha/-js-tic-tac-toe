@@ -35,7 +35,7 @@
 // }
 //
 
-import { GAME_STATUS, TURN } from './constants.js';
+import { CELL_VALUE, GAME_STATUS, TURN } from './constants.js';
 import { getCellElementAtIdx, getCellElementList } from './selectors.js';
 
 // Input: an array of 9 items
@@ -65,7 +65,7 @@ export function checkGameStatus(cellValues) {
     if (matchValue && cellValues[winIndexList[0]] !== '') {
       return {
         status:
-          cellValues[winIndexList[0]] === 'X'
+          cellValues[winIndexList[0]] === CELL_VALUE.CROSS
             ? GAME_STATUS.X_WIN
             : GAME_STATUS.O_WIN,
         winPositions: winIndexList,
