@@ -3,6 +3,7 @@ import {
   getCellElementList,
   getCurrentTurnElement,
   getGameStatusElement,
+  getReplayButtonElement,
 } from './selectors.js';
 
 import { GAME_STATUS, TURN } from './constants.js';
@@ -28,6 +29,16 @@ function handleCellClick(cell, index) {
 
   cellValues[index] = currentTurn === 'cross' ? 'X' : 'O';
   const result = checkGameStatus(cellValues);
+  const replayButtonElement = getReplayButtonElement();
+  isGameEnded =
+    result.status === GAME_STATUS.ENDED ||
+    result.status === GAME_STATUS.O_WIN ||
+    result.status === GAME_STATUS.X_WIN;
+
+  if (isGameEnded && replayButtonElement) {
+    replayButtonElement.style.display = 'inline-block';
+  }
+
   const statusElement = getGameStatusElement();
 
   if (statusElement) {
@@ -56,10 +67,26 @@ function initCellElementList() {
   });
 }
 
+function initReplayButton() {
+  const replayButtonElement = getReplayButtonElement();
+  const cellElementList = getCellElementList();
+  if (!cellElementList || !cellElementList) return;
+
+  replayButtonElement.addEventListener('click', () => {
+    cellValues = new Array(9).fill('');
+    cellElementList.forEach((cell) => {
+      cell.classList.remove(TURN.CROSS, TURN.CIRCLE);
+    });
+
+    replayButtonElement.style.display = 'none';
+  });
+}
+
 (() => {
   //bind click even for all element
   initCellElementList();
   //bind click even for replay button
+  initReplayButton();
   //...
 })();
 

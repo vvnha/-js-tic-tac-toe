@@ -6,7 +6,7 @@
 
 body {
   font-size: 16px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 ul {
@@ -119,13 +119,13 @@ ul {
 
 .game .board-cells-list > li.cross::before,
 .game .game-details .current-turn .cross::before {
-  content: "X";
+  content: 'X';
   color: lightgreen;
 }
 
 .game .board-cells-list > li.circle::before,
 .game .game-details .current-turn .circle::before {
-  content: "O";
+  content: 'O';
   color: red;
 }
 
