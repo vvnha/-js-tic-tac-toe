@@ -6,7 +6,7 @@ import {
   getReplayButtonElement,
 } from './selectors.js';
 
-import { GAME_STATUS, TURN } from './constants.js';
+import { CELL_VALUE, GAME_STATUS, TURN } from './constants.js';
 import { checkGameStatus } from './utils.js';
 
 /**
@@ -27,7 +27,8 @@ function handleCellClick(cell, index) {
 
   if (isSelected) return;
 
-  cellValues[index] = currentTurn === 'cross' ? 'X' : 'O';
+  cellValues[index] =
+    currentTurn === 'cross' ? CELL_VALUE.CROSS : CELL_VALUE.CIRCLE;
   const result = checkGameStatus(cellValues);
   const replayButtonElement = getReplayButtonElement();
   isGameEnded =
