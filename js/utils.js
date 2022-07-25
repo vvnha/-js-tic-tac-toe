@@ -35,8 +35,7 @@
 // }
 //
 
-import { CELL_VALUE, GAME_STATUS, TURN } from './constants.js';
-import { getCellElementAtIdx, getCellElementList } from './selectors.js';
+import { CELL_VALUE, GAME_STATUS } from './constants.js';
 
 // Input: an array of 9 items
 // Output: an object as mentioned above
